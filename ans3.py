@@ -1,9 +1,4 @@
-"""
-設問3
-サーバが返すpingの応答時間が長くなる場合、サーバが過負荷状態になっていると考えられる。
-そこで、直近m回の平均応答時間がtミリ秒を超えた場合は、サーバが過負荷状態になっているとみなそう。
-設問2のプログラムを拡張して、各サーバの過負荷状態となっている期間を出力できるようにせよ。mとtはプログラムのパラメータとして与えられるようにすること。
-"""
+
 
 from _datetime import datetime
 
@@ -31,15 +26,14 @@ for log in l_strip:
         # 存在しない場合はstopに故障状態のipをkey, dateをvalueとして保存
         if log_split[1] in stop.keys():
             stop_count[log_split[1]] += 1
-            continue
         else:
             stop_count.setdefault(log_split[1], 1)
             stop.setdefault(log_split[1], broken_date)
     else:
         if log_split[1] in response_time.keys():
+            response_time[log_split[1]] = response_time[log_split[1]] + int(log_split[2])
             if response_time[log_split[1]] / m >= t:
                 response_date.setdefault(log_split[1], broken_date)
-            response_time[log_split[1]] = response_time[log_split[1]] + int(log_split[2])
         else:
             response_time.setdefault(log_split[1], int(log_split[2]))
 
