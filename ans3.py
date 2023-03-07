@@ -32,7 +32,7 @@ for log in l_strip:
     else:
         if log_split[1] in response_time.keys():
             response_time[log_split[1]] = response_time[log_split[1]] + int(log_split[2])
-            if response_time[log_split[1]] / m >= t:
+            if response_time[log_split[1]] / m >= t　* m:
                 response_date.setdefault(log_split[1], broken_date)
         else:
             response_time.setdefault(log_split[1], int(log_split[2]))
